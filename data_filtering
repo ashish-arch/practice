@@ -1,0 +1,79 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the data
+# Make sure to replace the file path with the actual path of your dataset
+df = pd.read_csv('your_dataset.csv')
+
+# Data Cleaning
+
+# Check for missing values
+print("Missing Values:")
+print(df.isnull().sum())
+
+# Drop duplicates if any
+df.drop_duplicates(inplace=True)
+
+# Data Exploration (EDA)
+
+# Summary statistics
+print("Summary Statistics:")
+print(df.describe())
+
+# Distribution of the target variable
+sns.countplot(data=df, x='responded')
+plt.xlabel('Response')
+plt.ylabel('Count')
+plt.title('Distribution of Target Variable (Response)')
+plt.show()
+
+# Age distribution
+sns.histplot(data=df, x='CustAge', bins=20, kde=True, color='skyblue')
+plt.xlabel('Age')
+plt.ylabel('Count')
+plt.title('Age Distribution of Customers')
+plt.show()
+
+# Marital status distribution
+sns.countplot(data=df, x='marital', palette='coolwarm')
+plt.xlabel('Marital Status')
+plt.ylabel('Count')
+plt.title('Marital Status Distribution of Customers')
+plt.show()
+
+# Education level distribution
+sns.countplot(data=df, x='Schooling', palette='coolwarm')
+plt.xlabel('Education Level')
+plt.ylabel('Count')
+plt.title('Education Level Distribution of Customers')
+plt.xticks(rotation=45)
+plt.show()
+
+# Profession distribution
+sns.countplot(data=df, x='Profession', palette='coolwarm')
+plt.xlabel('Profession')
+plt.ylabel('Count')
+plt.title('Profession Distribution of Customers')
+plt.xticks(rotation=45)
+plt.show()
+
+# Housing loan distribution
+sns.countplot(data=df, x='Housing', palette='coolwarm')
+plt.xlabel('Housing Loan')
+plt.ylabel('Count')
+plt.title('Housing Loan Distribution')
+plt.show()
+
+# Personal loan distribution
+sns.countplot(data=df, x='Loan', palette='coolwarm')
+plt.xlabel('Personal Loan')
+plt.ylabel('Count')
+plt.title('Personal Loan Distribution')
+plt.show()
+
+# Correlation Heatmap
+correlation_matrix = df.corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Correlation Heatmap')
+plt.show()
